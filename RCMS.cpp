@@ -17,71 +17,85 @@ void Public();
 class STUDENT {
 private:
     char name[50];
-    char fname[50];
-    char mname[50];
-    char date[15];
-    char telno[15];
-    int sclass;
-    char div;
-    int rno;
+    char father_name[50];
+    char mother_name[50];
+    char birthday[15];
+    char phone_number[15];
+    int student_class;
+    char division;
+    int roll_number;
     char stream;
-    float marks[5];
-    char sec_code[5];
-    int attct;
-    float per;
-    char grade;
+    float grades[5];
+    char passcode[5];
+    int attendance;
+    float percentage;
+    char letter_grade;
 
-    void getper() {
-        per = (marks[0] + marks[1] + marks[2] + marks[3] + marks[4]) / 5;
+    // Calculates a student's percentage based on the performance from the classes
+    void getpercentage() {
+        percentage = (grades[0] + grades[1] + grades[2] + grades[3] + grades[4]) / 5;
     }
 
-    void getgrade() {
-        if (per >= 80)
-            grade = 'A';
-        else if ((per >= 60) && (per <= 79))
-            grade = 'B';
-        else if ((per >= 40) && (per <= 59))
-            grade = 'C';
-        else if ((per >= 35) && (per <= 39))
-            grade = 'D';
-        else if (per < 35)
-            grade = 'E';
+    // Determines a student's letter grade based on their percentage
+    void getletter_grade() {
+        if (percentage >= 80)
+            letter_grade = 'A';
+        else if ((percentage >= 60) && (percentage <= 79))
+            letter_grade = 'B';
+        else if ((percentage >= 40) && (percentage <= 59))
+            letter_grade = 'C';
+        else if ((percentage >= 35) && (percentage <= 39))
+            letter_grade = 'D';
+        else if (percentage < 35)
+            letter_grade = 'E';
     }
 
 public:
+    // Enter the information that is needed to create a student
     void enter() {
         cout << "\t\t\t  -------------------------------" << "\n";
         cout << "\t\t\t     ENTER THE STUDENT DETAILS" << "\n";
         cout << "\t\t\t  -------------------------------" << "\n\n";
+		
         cout << "\t\tNAME OF THE STUDENT    : ";
         cin.ignore();
         cin.getline(name, 50);
+		
         cout << "\t\tFATHER'S NAME          : ";
-        cin.getline(fname, 50);
+        cin.getline(father_name, 50);
+		
         cout << "\t\tMOTHER'S NAME          : ";
-        cin.getline(mname, 50);
+        cin.getline(mother_name, 50);
+		
         cout << "\t\tDATE OF BIRTH(DD/MM/YY): ";
-        cin.getline(date, 15);
+        cin.getline(birthday, 15);
+		
         cout << "\t\tTELEPHONE NUMBER       : ";
-        cin.getline(telno, 15);
+        cin.getline(phone_number, 15);
+		
         cout << "\t\tSECURITY CODE          : ";
-        cin.getline(sec_code, 5);
+        cin.getline(passcode, 5);
+		
         cout << "\t\tCLASS                  : ";
         char class_string[15];
         cin.getline(class_string, 15);
-        sclass = atoi(class_string);
+        student_class = atoi(class_string);
+		
         cout << "\t\tDIVISION               : ";
         char division_string[15];
         cin.getline(division_string, 15);
-        div = atoi(division_string);
+        division = atoi(division_string);
+		
         cout << "\t\tROLL NUMBER            : ";
         char roll_num_string[15];
         cin.getline(roll_num_string, 15);
-        rno = atoi(roll_num_string);
+        roll_number = atoi(roll_num_string);
         cout << "\t\tDAYS PRESENT           : ";
+		
         char attendance_string[15];
         cin.getline(attendance_string, 15);
-        attct = atoi(attendance_string);
+        attendance = atoi(attendance_string);
+		
         cout << "\n\t\tSTREAM('C' FOR COMPUTER OR 'B' FOR BIOLOGY): ";
         stream = cin.get();
         cin.get();
@@ -93,39 +107,40 @@ public:
             cout << "\t\t\t       PHYSICS    : ";
             char grade_string[4];
             cin.getline(grade_string, 4);
-            marks[0] = atoi(grade_string);
+            grades[0] = atoi(grade_string);
             cout << "\t\t\t       CHEMISTRY  : ";
             cin.getline(grade_string, 4);
-            marks[1] = atoi(grade_string);
+            grades[1] = atoi(grade_string);
             cout << "\t\t\t       MATHEMATICS: ";
             cin.getline(grade_string, 4);
-            marks[2] = atoi(grade_string);
+            grades[2] = atoi(grade_string);
             cout << "\t\t\t       COMPUTER   : ";
             cin.getline(grade_string, 4);
-            marks[3] = atoi(grade_string);
+            grades[3] = atoi(grade_string);
             cout << "\t\t\t       ENGLISH    : ";
             cin.getline(grade_string, 4);
-            marks[4] = atoi(grade_string);
+            grades[4] = atoi(grade_string);
         } else {
             cout << "\t\t\t  -----------------------------" << "\n";
-            cout << "\t\t\t     ENTER THE SUBJECT MARKS" << "\n";
+            cout << "\t\t\t     ENTER THE SUBJECT GRADES" << "\n";
             cout << "\t\t\t  -----------------------------" << "\n\n";
             cout << "\t\t\t       PHYSICS    : ";
-            cin >> marks[0];
+            cin >> grades[0];
             cout << "\t\t\t       CHEMISTRY  : ";
-            cin >> marks[1];
+            cin >> grades[1];
             cout << "\t\t\t       MATHEMATICS: ";
-            cin >> marks[2];
+            cin >> grades[2];
             cout << "\t\t\t       BIOLOGY    : ";
-            cin >> marks[3];
+            cin >> grades[3];
             cout << "\t\t\t       ENGLISH    : ";
-            cin >> marks[4];
+            cin >> grades[4];
         }
         cout << "\n\n";
-        getper();
-        getgrade();
+        getpercentage();
+        getletter_grade();
     }
 
+    // Displays a student's report card, after calculating the grade
     void display_report() {
         cout << "----------------------------------------";
         cout << "---------------------------------------\n";
@@ -137,56 +152,57 @@ public:
         cout << "                             PERSONAL DETAILS\n";
         cout << "                         ------------------------\n\n";
         cout << "NAME: " << name << "\t\t";
-        cout << "CLASS: " << sclass << "\t";
-        cout << "DIV: " << div << "\t\t";
-        cout << "ROLL NO: " << rno << "\n\n";
-        cout << "DATE OF BIRTH: " << date << "\t";
+        cout << "CLASS: " << student_class << "\t";
+        cout << "DIV: " << division << "\t\t";
+        cout << "ROLL NO: " << roll_number << "\n\n";
+        cout << "DATE OF BIRTH: " << birthday << "\t";
         if (stream == 'C') {
             cout << "STREAM: " << "COMPUTER" << "\t";
         } else if (stream == 'B') {
             cout << "STREAM: " << "BIOLOGY" << "\t";
         }
-        cout << "TELEPHONE: " << telno << "\n\n";
-        cout << "FATHERS NAME: " << fname << "\t\t\t";
-        cout << "MOTHERS NAME: " << mname << "\n\n";
+        cout << "TELEPHONE: " << phone_number << "\n\n";
+        cout << "FATHERS NAME: " << father_name << "\t\t\t";
+        cout << "MOTHERS NAME: " << mother_name << "\n\n";
         cout << "                        ----------------------------\n";
         cout << "                            ACADEMIC PERFORMANCE\n";
         cout << "                        ----------------------------\n\n";
         cout << "                 ---------------------------------------\n";
-        cout << "                                  MARKS\n";
+        cout << "                                  GRADES\n";
         cout << "                 ---------------------------------------\n";
         if (stream == 'C') {
-            cout << "\t\t\t  PHYSICS\t" << marks[0] << "\n";
-            cout << "\t\t\t  CHEMISTRY\t" << marks[1] << "\n";
-            cout << "\t\t\t  MATHS\t\t" << marks[2] << "\n";
-            cout << "\t\t\t  COMPUTER\t" << marks[3] << "\n";
-            cout << "\t\t\t  ENGLISH\t" << marks[4] << "\n";
+            cout << "\t\t\t  PHYSICS\t" << grades[0] << "\n";
+            cout << "\t\t\t  CHEMISTRY\t" << grades[1] << "\n";
+            cout << "\t\t\t  MATHS\t\t" << grades[2] << "\n";
+            cout << "\t\t\t  COMPUTER\t" << grades[3] << "\n";
+            cout << "\t\t\t  ENGLISH\t" << grades[4] << "\n";
         } else if (stream == 'B') {
-            cout << "\t\t\t  PHYSICS\t" << marks[0] << "\n";
-            cout << "\t\t\t  CHEMISTRY\t" << marks[1] << "\n";
-            cout << "\t\t\t  MATHS\t\t" << marks[2] << "\n";
-            cout << "\t\t\t  BIOLOGY\t" << marks[3] << "\n";
-            cout << "\t\t\t  ENGLISH\t" << marks[4] << "\n";
+            cout << "\t\t\t  PHYSICS\t" << grades[0] << "\n";
+            cout << "\t\t\t  CHEMISTRY\t" << grades[1] << "\n";
+            cout << "\t\t\t  MATHS\t\t" << grades[2] << "\n";
+            cout << "\t\t\t  BIOLOGY\t" << grades[3] << "\n";
+            cout << "\t\t\t  ENGLISH\t" << grades[4] << "\n";
         }
         cout << "                -------------------        ------------\n";
-        cout << "                 PERCENTAGE: " << per << "%" << "           ";
-        cout << "GRADE: " << grade << "\n";
+        cout << "                 PERCENTAGE: " << percentage << "%" << "           ";
+        cout << "GRADE: " << letter_grade << "\n";
         cout << "                -------------------        ------------\n\n";
     }
-
+	
+	//Displays all the personal information of a student
     void display_all() {
         cout << "\t\tNAME: " << name << "\n";
-        cout << "\t\tFATHER: " << fname << "\t" << "MOTHER: " << mname << "\n";
-        cout << "\t\tROLL NO: " << rno << "\t" << "SECURE CODE: " << sec_code << "\n";
-        cout << "\t\tCLASS: " << sclass << " " << div << "\t";
+        cout << "\t\tFATHER: " << father_name << "\t" << "MOTHER: " << mother_name << "\n";
+        cout << "\t\tROLL NO: " << roll_number << "\t" << "SECURE CODE: " << passcode << "\n";
+        cout << "\t\tCLASS: " << student_class << " " << division << "\t";
         cout << "STREAM: " << stream << "\n";
-        cout << "\t\tTELEPHONE NO: " << telno << "\n\n";
-        cout << "\t\t                     MARKS" << "\n";
+        cout << "\t\tTELEPHONE NO: " << phone_number << "\n\n";
+        cout << "\t\t                     GRADES" << "\n";
         cout << "\t\tPHY\tCHEM\tMATHS\tBIO/COMP\tENG" << "\n";
-        cout << "\t\t" << marks[0] << "\t" << marks[1] << "\t" << marks[2] << "\t";
-        cout << marks[3] << "\t\t" << marks[4] << "\n\n";
-        cout << "\t\tPERCENTAGE: " << per << "%\t\t" << "GRADE: " << grade << "\n";
-        cout << "\t\tATTENDANCE: " << attct;
+        cout << "\t\t" << grades[0] << "\t" << grades[1] << "\t" << grades[2] << "\t";
+        cout << grades[3] << "\t\t" << grades[4] << "\n\n";
+        cout << "\t\tPERCENTAGE: " << percentage << "%\t\t" << "GRADE: " << letter_grade << "\n";
+        cout << "\t\tATTENDANCE: " << attendance;
 
     }
 
@@ -200,12 +216,17 @@ public:
 
     friend void sort();
 
-    friend void sortmark();
+    friend void sortgrades();
 
-    friend void sortper();
+    friend void sortpercentage();
 };
 
 /**************************ADDING A RECORD**************************/
+/*
+Calls the enter() function in the student class definition to input the personal
+information for a student.
+Once this is done, that student is then appended to the 'Record.dat' file
+*/
 void add() {
     STUDENT s;
     ofstream f("Record.dat", ios::binary | ios::app);
@@ -215,7 +236,12 @@ void add() {
 }
 
 /********************DISPLAYING ALL THE RECORDS********************/
-void dispall() {
+/*
+Displays all of the personal information for each of the students.
+The list of students are stored in the file 'Record.dat', so if that file is
+not found, then the whole program will not work
+*/
+void display_all() {
     STUDENT s;
     ifstream f("Record.dat");
     if (!f) {
@@ -234,6 +260,14 @@ void dispall() {
 }
 
 /*************************DELETING A RECORD*************************/
+/*
+To delete a record, the teacher first enters the roll number of a student.
+Once this is done, the list of records is searched for a student with a matching roll number
+
+If this student is found, then they are taken out of the list
+
+If this student is not found, then the record was not found, and the teacher returns to the Teacher() function
+*/
 void del() {
     STUDENT s;
     ifstream f1("Record.dat");
@@ -248,7 +282,7 @@ void del() {
         cin >> n;
         system("cls");
         while (f1.read((char *) &s, sizeof(s))) {
-            if (n != s.rno) {
+            if (n != s.roll_number) {
                 f2.write((char *) &s, sizeof(s));
                 flag = 1;
             }
@@ -269,6 +303,21 @@ void del() {
 }
 
 /************************MODIFYING A RECORD************************/
+/*
+To modify a record, the teacher needs to first enter the roll number associated with
+the record of choice.
+
+After enterring a roll number, the list of records is searched to find a matching roll number,
+and then that student's record is grabbed. 
+
+After grabbing the record, the enter() function within the definition of the Student class is called,
+and the changes are made by simulating a new student being enterred into the database
+
+Once this is done, the old student is removed from the record, and the new temporary student takes the
+place of the deleted student
+
+If that roll number is not found, the teacher goes back to the Teacher() function.
+*/
 void modify() {
     STUDENT s;
     ifstream f1("Record.dat");
@@ -282,7 +331,7 @@ void modify() {
         cout << "ENTER THE ROLL NUMBER OF THE STUDENT: ";
         cin >> n;
         while (f1.read((char *) &s, sizeof(s))) {
-            if (n == s.rno) {
+            if (n == s.roll_number) {
                 cout << "ENTER THE MODIFIED DETAILS OF THE STUDENT";
                 s.enter();
 
@@ -305,6 +354,14 @@ void modify() {
 }
 
 /******************SEARCING FOR A RECORD (TEACHER)******************/
+/*
+An individual with Teacher level access does not need the secure passcode to read a student's record
+
+So, the teacher enters the roll number of a particular student, and the record with the matching roll number
+is displayed using the display_report() function
+
+If a student with the enterred roll number is not found, the teacher goes back to the Teacher() function
+*/
 void search() {
     STUDENT s;
     ifstream f("Record.dat");
@@ -318,7 +375,7 @@ void search() {
         cin >> n;
         system("cls");
         while (f.read((char *) &s, sizeof(s))) {
-            if (n == s.rno) {
+            if (n == s.roll_number) {
                 flag = 1;
                 s.display_report();
             }
@@ -332,6 +389,16 @@ void search() {
 }
 
 /******************SEARCING FOR A RECORD (STUDENT)******************/
+/*
+To search for a particular student's record, that students' roll number must be enterred.
+If a matching number is found within the list of students, then the user must enter the passcode
+associated with that student. 
+
+If both the roll number and the secure passcode match for the found student, then that record is displayed
+using the display_record() function.
+
+If the roll number is not found, the user is pushed back to their access level function
+*/
 void search_student() {
     STUDENT s;
     ifstream f("Record.dat");
@@ -350,7 +417,7 @@ void search_student() {
         cin.getline(a, 5);
         system("cls");
         while (f.read((char *) &s, sizeof(s))) {
-            if ((n == s.rno) && (strcmp(a, s.sec_code) == 0)) {
+            if ((n == s.roll_number) && (strcmp(a, s.passcode) == 0)) {
                 flag = 1;
                 s.display_report();
             }
@@ -364,7 +431,14 @@ void search_student() {
 }
 
 /***********************SORTING BY PERCENTAGE***********************/
-void sortper() {
+/*
+To begin with, all the records are read, and the percentage of each student is sorted based
+on ascending order of percentage. 
+
+Once the percentages are sorted, they are then displayed, and the user returns to their access
+level function
+*/
+void sortpercentage() {
     STUDENT s, t[100], temp;
     ifstream f("Record.dat");
     int n = 0;
@@ -381,7 +455,7 @@ void sortper() {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n - 1; j++) {
-                if (t[j].per < t[j + 1].per) {
+                if (t[j].percentage < t[j + 1].percentage) {
                     temp = t[j];
                     t[j] = t[j + 1];
                     t[j + 1] = temp;
@@ -401,8 +475,18 @@ void sortper() {
     }
 }
 
-/**************************SORTING BY MARK**************************/
-void sortmark() {
+/**************************SORTING BY GRADES**************************/
+/*
+To begin with, a subject is selected to display the grades in. Once a subject is selected,
+the records are then sorted.
+
+The records are sorted based on the top five grades, and then they are displayed along with the
+name of the student associated with that grade. 
+
+Finally, the user returns back to their access level function, Student(), Teacher(), or Public(), and 
+they are able to make another selection
+*/
+void sortgrades() {
     STUDENT s, t[100], temp;
     ifstream f("Record.dat");
     int x, y, n = 0;
@@ -439,7 +523,7 @@ void sortmark() {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n - 1; j++) {
-                if (t[j].marks[x] < t[j + 1].marks[x]) {
+                if (t[j].grades[x] < t[j + 1].grades[x]) {
                     temp = t[j];
                     t[j] = t[j + 1];
                     t[j + 1] = temp;
@@ -450,18 +534,26 @@ void sortmark() {
 /*******************DISPLAYING THE SORTED RECORDS*******************/
         cout << "\n\n\n\n\n\n";
         cout << "\t\t\t" << "-------------------------------" << "\n";
-        cout << "\t\t\t" << "   SL. NO:" << "\t" << "MARKS" << "\t" << "NAME" << "\n";
+        cout << "\t\t\t" << "   SL. NO:" << "\t" << "GRADES" << "\t" << "NAME" << "\n";
         cout << "\t\t\t" << "-------------------------------" << "\n\n";
         for (int i = 0; i < 5; ++i) {
             cout << "\t\t\t   ";
             cout << i + 1 << ". " << "\t\t";
-            cout << t[i].marks[x] << "\t" << t[i].name;
+            cout << t[i].grades[x] << "\t" << t[i].name;
             cout << endl;
         }
         cout << "\n\n\n";
     }
 }
 
+
+/*
+Whenever a user calls the Statistics() function, they are given the choice to order the
+records by ascending order of percentage or the top five grades in each subject.
+
+Depending on the choice, they will either go to the sortpercentage() function, or the sortgrades()
+function, where their choice will be performed
+*/
 void statistics() {
     int n;
     cout << "\n\n\n\n\n\n\n";
@@ -469,16 +561,16 @@ void statistics() {
     cout << "\t\t                 STATISTICS" << "\n";
     cout << "\t\t              ----------------" << "\n";
     cout << "\t\t   1. VIEW ASCENDING ORDER OF PERCENTAGE" << "\n";
-    cout << "\t\t   2. VIEW TOP FIVE MARKS IN EACH SUBJECT" << "\n\n";
+    cout << "\t\t   2. VIEW TOP FIVE GRADES IN EACH SUBJECT" << "\n\n";
     cout << "\t\t           ENTER YOUR OPTION: ";
     cin >> n;
     system("cls");
     switch (n) {
         case 1:
-            sortper();
+            sortpercentage();
             break;
         case 2:
-            sortmark();
+            sortgrades();
             break;
         default:
             cout << "\n\n\n\n\n\n\n\n\n\n\n\t\t\t\tWRONG OPTION!";
@@ -487,6 +579,11 @@ void statistics() {
 }
 
 /**********************DISPLAYING INTRODUCTION**********************/
+/*
+Displays some basic information about the program, like the authors and the title
+of the program. This comes directly from the Sequence() function, and immediatley after 
+it Segregation() is called to perform the functionality of the program
+*/
 void Intro() {
     using namespace std;
     cout << "A PROGRAM BY JOSHUA JOSEPH AND MASOOD AL ANSAR" << endl;
@@ -508,6 +605,13 @@ void Intro() {
 }
 
 /*******************SPLITTING INTO DIFFERENT USERS*******************/
+/*
+Here the user determine what kind of access they have, Teacher, Student, or Public access.
+Once there access is determined, they go to the Password(), Student(), or Public() functions, which 
+decide what kind of operations they can perform. 
+
+If they decide to exit, the program quits, or if they enter wrong the choice is presented again
+*/
 void Segregation() {
     int n;
     start:
@@ -544,6 +648,14 @@ void Segregation() {
 }
 
 /*************************TEACHER FUNCTION*************************/
+/*
+If a user enterred the Teacher password correctly, they are granted Teacher access
+
+As a Teacher, the user is able to add a new record, delete a record, search for a specific record,
+and modify a specific record. They are also able to display all records, and display the class statistics
+
+Depending on the choice they enter on the input, they will go to a function for the particular operations
+*/
 void Teacher() {
     int n = -1;
     while (n != 7){
@@ -577,7 +689,7 @@ void Teacher() {
                 del();
                 break;
             case 5:
-                dispall();
+                display_all();
                 break;
             case 6:
                 statistics();
@@ -592,6 +704,11 @@ void Teacher() {
 }
 
 /*************************STUDENT FUNCTION*************************/
+/*
+If a user has Student access, they are able to view class statistics, or look at their
+personal record. Depending on their choice, they will either go to the 
+search_student() function to check their record, or statistics() to look at the class' stats
+*/
 void Student() {
     int n;
     start:
@@ -622,6 +739,11 @@ void Student() {
 }
 
 /**************************PUBLIC FUNCTION**************************/
+/*
+If a user has Public access, they are able to view class statistics, or go back to 
+the main menu. Depending on what option they choose, they will either go to the 
+Statistics() function, or back to the Segregation() function
+*/
 void Public() {
     int n;
     start:
@@ -651,6 +773,15 @@ void Public() {
 }
 
 /*************************PASSWORD FUNCTION*************************/
+/*
+Function to check a password if a user is a Teacher.
+The user enters a password, and if it matches the stored password, then 
+the user is granted Teacher access, and moves to the Teacher() function. 
+
+Otherwise, they are able to try to reenter the password
+If they do not enter the password correclty within 2 tries, they go back to the
+Segregation() function to determine their access level
+*/
 void Password() {
     char pass[7];
     pass[6] = '\0';
@@ -673,6 +804,14 @@ void Password() {
 }
 
 /*********************SETTING FUNCTION SEQUENCE*********************/
+/*
+This function is called directly within main, so Intro() is the first function to run, which
+prints out the opening information about the program.
+
+After the opening info is printed, the Segregation() function is called, which is the main hub for the program.
+The Segregation() function decides what level of access a user has, and they are able to choose to kill the program
+within the Segregation() function
+*/
 void SEQUENCE() {
     Intro();
     Segregation();
