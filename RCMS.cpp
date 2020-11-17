@@ -1,7 +1,7 @@
 #include<iostream>
 #include<fstream>
 #include <cstring>
-
+#include <stdlib.h>
 using namespace std;
 
 /********************DECLARING FUNCTION HEADERS********************/
@@ -9,7 +9,7 @@ void PasswordScreen();
 
 void Teacher();
 
-// [[noreturn]] to make my code editor stop complaining about an endless loop that isn't endless
+// [[noreturn]] to make my code editor stop complaining about an endless loop that isn't endless 
 [[noreturn]] void StudentScreen();
 
 [[noreturn]] void PublicScreen();
@@ -239,7 +239,7 @@ Displays all of the personal information for each of the students.
 The list of students are stored in the file 'Record.dat', so if that file is
 not found, then the whole program will not work
 */
-void display_all() {
+/*void display_all() {
     ifstream f("Record.dat");
     if (!f) {
         cout << "\n\n\n\n\n\n\n\n\n\n\n\t\t\t\tFILE NOT FOUND!";
@@ -255,15 +255,13 @@ void display_all() {
         }
     }
     f.close();
-}
+}*/
 
 /*************************DELETING A RECORD*************************/
 /*
 To delete a record, the teacher first enters the roll number of a student.
 Once this is done, the list of records is searched for a student with a matching roll number
-
 If this student is found, then they are taken out of the list
-
 If this student is not found, then the record was not found, and the teacher returns to the Teacher() function
 */
 void delete_student() {
@@ -303,16 +301,12 @@ void delete_student() {
 /*
 To modify a record, the teacher needs to first enter the roll number associated with
 the record of choice.
-
 After entering a roll number, the list of records is searched to find a matching roll number,
 and then that student's record is grabbed. 
-
 After grabbing the record, the enter_details() function within the definition of the Student class is called,
 and the changes are made by simulating a new student being enterred into the database
-
 Once this is done, the old student is removed from the record, and the new temporary student takes the
 place of the deleted student
-
 If that roll number is not found, the teacher goes back to the Teacher() function.
 */
 void modify() {
@@ -352,10 +346,8 @@ void modify() {
 /******************SEARCING FOR A RECORD (TEACHER)******************/
 /*
 An individual with Teacher level access does not need the secure passcode to read a student's record
-
 So, the teacher enters the roll number of a particular student, and the record with the matching roll number
 is displayed using the display_report() function
-
 If a student with the enterred roll number is not found, the teacher goes back to the Teacher() function
 */
 void search() {
@@ -388,10 +380,8 @@ void search() {
 To search for a particular student's record, that students' roll number must be enterred.
 If a matching number is found within the list of students, then the user must enter the passcode
 associated with that student. 
-
 If both the roll number and the secure passcode match for the found student, then that record is displayed
 using the display_record() function.
-
 If the roll number is not found, the user is pushed back to their access level function
 */
 void search_student() {
@@ -428,7 +418,6 @@ void search_student() {
 /*
 To begin with, all the records are read, and the percentage of each student is sorted based
 on ascending order of percentage. 
-
 Once the percentages are sorted, they are then displayed, and the user returns to their access
 level function
 */
@@ -472,10 +461,8 @@ void sort_percentage() {
 /*
 To begin with, a subject is selected to display the grades in. Once a subject is selected,
 the records are then sorted.
-
 The records are sorted based on the top five grades, and then they are displayed along with the
 name of the student associated with that grade. 
-
 Finally, the user returns back to their access level function, StudentScreen(), Teacher(), or PublicScreen(), and 
 they are able to make another selection
 */
@@ -541,7 +528,6 @@ void sort_grades() {
 /*
 Whenever a user calls the Statistics() function, they are given the choice to order the
 records by ascending order of percentage or the top five grades in each subject.
-
 Depending on the choice, they will either go to the sort_percentage() function, or the sort_grades()
 function, where their choice will be performed
 */
@@ -586,7 +572,6 @@ void Intro() {
 Here the user determine what kind of access they have, Teacher, Student, or Public access.
 Once there access is determined, they go to the PasswordScreen(), StudentScreen(), or PublicScreen() functions, which 
 decide what kind of operations they can perform. 
-
 If they decide to exit, the program quits, or if they enter wrong the choice is presented again
 */
 void LoginScreen() {
@@ -624,10 +609,8 @@ void LoginScreen() {
 /*************************TEACHER FUNCTION*************************/
 /*
 If a user entered the Teacher password correctly, they are granted Teacher access
-
 As a Teacher, the user is able to add a new record, delete a record, search for a specific record,
 and modify a specific record. They are also able to display all records, and display the class statistics
-
 Depending on the choice they enter on the input, they will go to a function for the particular operations
 */
 void Teacher() {
@@ -660,7 +643,7 @@ void Teacher() {
                 delete_student();
                 break;
             case 5:
-                display_all();
+                sort_percentage();
                 break;
             case 6:
                 statistics();
@@ -745,7 +728,6 @@ Statistics() function, or back to the LoginScreen() function
 Function to check a password if a user is a Teacher.
 The user enters a password, and if it matches the stored password, then 
 the user is granted Teacher access, and moves to the Teacher() function. 
-
 Otherwise, they are able to try to reenter the password
 If they do not enter the password correctly within 2 tries, they go back to the
 LoginScreen() function to determine their access level
@@ -778,7 +760,6 @@ void PasswordScreen() {
 /*
 Intro() is the first function to run, which
 prints out the opening information about the program.
-
 After the opening info is printed, the LoginScreen() function is called, which is the main hub for the program.
 The LoginScreen() function decides what level of access a user has, and they are able to choose to kill the program
 within the LoginScreen() function
