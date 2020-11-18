@@ -1,7 +1,7 @@
 #include<iostream>
 #include<fstream>
 #include <cstring>
-#include <stdlib.h>
+#include <cstdlib>
 using namespace std;
 
 /********************DECLARING FUNCTION HEADERS********************/
@@ -70,8 +70,18 @@ public:
         cout << "\t\tDATE OF BIRTH(DD/MM/YY): ";
         cin.getline(birthday, 15);
 
-        cout << "\t\tTELEPHONE NUMBER       : ";
-        cin.getline(phone_number, 15);
+        if (birthday[2] != '/' || birthday[5] != '/'){
+            cout << "Incorrect Birthday Format" << endl;
+            enter_details();
+        }
+
+        cout << "\t\tTELEPHONE NUMBER (321-555-5555): ";
+        cin.getline(phone_number, 13);
+
+        if (phone_number[3] != '-' || phone_number[7] != '-'){
+            cout << "Incorrect Phone Number Format" << endl;
+            enter_details();
+        }
 
         cout << "\t\tSECURITY CODE          : ";
         cin.getline(passcode, 5);
@@ -99,42 +109,30 @@ public:
         cout << "\n\t\tSTREAM('C' FOR COMPUTER OR 'B' FOR BIOLOGY): ";
         stream = cin.get();
         cin.get();
-        cout << "\n";
+        cout << "\n\t\t\t  -----------------------------" << "\n";
+        cout << "\t\t\t     ENTER THE SUBJECT GRADES" << "\n";
+        cout << "\t\t\t  -----------------------------" << "\n\n";
+        cout << "\t\t\t       PHYSICS    : ";
+        char grade_string[4];
+        cin.getline(grade_string, 4);
+        grades[0] = atoi(grade_string);
+        cout << "\t\t\t       CHEMISTRY  : ";
+        cin.getline(grade_string, 4);
+        grades[1] = atoi(grade_string);
+        cout << "\t\t\t       MATHEMATICS: ";
+        cin.getline(grade_string, 4);
+        grades[2] = atoi(grade_string);
         if (stream == 'C') {
-            cout << "\t\t\t  -----------------------------" << "\n";
-            cout << "\t\t\t     ENTER THE SUBJECT GRADES" << "\n";
-            cout << "\t\t\t  -----------------------------" << "\n\n";
-            cout << "\t\t\t       PHYSICS    : ";
-            char grade_string[4];
-            cin.getline(grade_string, 4);
-            grades[0] = atoi(grade_string);
-            cout << "\t\t\t       CHEMISTRY  : ";
-            cin.getline(grade_string, 4);
-            grades[1] = atoi(grade_string);
-            cout << "\t\t\t       MATHEMATICS: ";
-            cin.getline(grade_string, 4);
-            grades[2] = atoi(grade_string);
             cout << "\t\t\t       COMPUTER   : ";
             cin.getline(grade_string, 4);
             grades[3] = atoi(grade_string);
-            cout << "\t\t\t       ENGLISH    : ";
-            cin.getline(grade_string, 4);
-            grades[4] = atoi(grade_string);
         } else {
-            cout << "\t\t\t  -----------------------------" << "\n";
-            cout << "\t\t\t     ENTER THE SUBJECT GRADES" << "\n";
-            cout << "\t\t\t  -----------------------------" << "\n\n";
-            cout << "\t\t\t       PHYSICS    : ";
-            cin >> grades[0];
-            cout << "\t\t\t       CHEMISTRY  : ";
-            cin >> grades[1];
-            cout << "\t\t\t       MATHEMATICS: ";
-            cin >> grades[2];
             cout << "\t\t\t       BIOLOGY    : ";
+            cin.getline(grade_string, 4);
             cin >> grades[3];
-            cout << "\t\t\t       ENGLISH    : ";
-            cin >> grades[4];
         }
+        cout << "\t\t\t       ENGLISH    : ";
+        cin >> grades[4];
         cout << "\n\n";
         get_percentage();
         get_letter_grade();
@@ -232,30 +230,6 @@ void add() {
     f.write((char *) &s, sizeof(s));
     f.close();
 }
-
-/********************DISPLAYING ALL THE RECORDS********************/
-/*
-Displays all of the personal information for each of the students.
-The list of students are stored in the file 'Record.dat', so if that file is
-not found, then the whole program will not work
-*/
-/*void display_all() {
-    ifstream f("Record.dat");
-    if (!f) {
-        cout << "\n\n\n\n\n\n\n\n\n\n\n\t\t\t\tFILE NOT FOUND!";
-        cout << "\n\n\n\n\n\n\n\n";
-    } else {
-        Student s;
-        cout << "\t\t\t  ---------------------------" << "\n";
-        cout << "\t\t\t     LIST OF CLASS RECORDS" << "\n";
-        cout << "\t\t\t  ---------------------------" << "\n\n";
-        while (f.read((char *) &s, sizeof(s))) {
-            s.display_all();
-            cout << "\n\n\n\t\t---------------------------------------------\n\n\n";
-        }
-    }
-    f.close();
-}*/
 
 /*************************DELETING A RECORD*************************/
 /*
