@@ -2,6 +2,7 @@
 #include<fstream>
 #include <cstring>
 #include <cstdlib>
+#include <limits>
 using namespace std;
 
 /********************DECLARING FUNCTION HEADERS********************/
@@ -129,7 +130,7 @@ public:
         } else {
             cout << "\t\t\t       BIOLOGY    : ";
             cin.getline(grade_string, 4);
-            cin >> grades[3];
+            grades[3] = atoi(grade_string);
         }
         cout << "\t\t\t       ENGLISH    : ";
         cin >> grades[4];
@@ -403,10 +404,8 @@ void sort_percentage() {
         cout << "\n\n\n\n\n\n\n\n\n\n\n\t\t\t\tFILE NOT FOUND!";
         cout << "\n\n\n\n\n\n\n\n";
     } else {
-        {
-            while (f.read((char *) &s, sizeof(s))) {
-                t[n++] = s;
-            }
+        while (f.read((char *) &s, sizeof(s)) && n < 100) {
+            t[n++] = s;
         }
         f.close();
 
@@ -601,7 +600,12 @@ void Teacher() {
         cout << "\t\t\t     6. CLASS STATISTICS" << "\n";
         cout << "\t\t\t     7. GO TO MAIN MENU" << "\n\n";
         cout << "\t\t\t     ENTER YOUR OPTION: ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin >> n;
+//        char *choice_string = (char*) malloc(3);
+//        cin.getline(choice_string, 50);
+//        n = atoi(choice_string);
         cout << n << endl;
         switch (n) {
             case 1:
