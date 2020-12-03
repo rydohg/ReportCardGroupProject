@@ -1,5 +1,5 @@
-#include<iostream>
-#include<fstream>
+#include <iostream>
+#include <fstream>
 #include <cstring>
 #include <cstdlib>
 #include <limits>
@@ -107,7 +107,7 @@ public:
         cin.getline(attendance_string, 15);
         attendance = atoi(attendance_string);
 
-        cout << "\n\t\tSTREAM('C' FOR COMPUTER OR 'B' FOR BIOLOGY): ";
+        cout << "\n\t\tTYPE('C' FOR COMPUTER OR 'B' FOR BIOLOGY): ";
         stream = cin.get();
         cin.get();
         cout << "\n\t\t\t  -----------------------------" << "\n";
@@ -143,8 +143,8 @@ public:
     void display_report() {
         cout << "----------------------------------------";
         cout << "---------------------------------------\n";
-        cout << "                        THE EMIRATES NATIONAL SCHOOL\n\n";
-        cout << "                             STUDENT REPORT CARD\n";
+        cout << "         FLORIDA TECH\n\n";
+        cout << "      STUDENT REPORT CARD\n";
         cout << "----------------------------------------";
         cout << "---------------------------------------\n\n";
         cout << "                         ------------------------\n";
@@ -506,7 +506,7 @@ function, where their choice will be performed
 */
 void statistics() {
     int n;
-    cout << "\n\n\n\n\n\n\n";
+    cout << "\n\n";
     cout << "\t\t              ----------------" << "\n";
     cout << "\t\t                 STATISTICS" << "\n";
     cout << "\t\t              ----------------" << "\n";
@@ -537,7 +537,7 @@ void Intro() {
     using namespace std;
     cout << "Program originally by Joshua Joseph and Masood Al Ansar" << endl;
     cout << "Modified by Ryan Doherty, Zack Bruggen, Kiran Chandra, and Taylor Czerwinski" << endl;
-    cout << "\n\n\n\n\n\n\n\n\n\n\n\t\t\tREPORT CARD MANAGEMENT SYSTEM";
+    cout << "\t\t\t  REPORT CARD MANAGEMENT SYSTEM\n";
 }
 
 /*******************SPLITTING INTO DIFFERENT USERS*******************/
@@ -574,7 +574,7 @@ void LoginScreen() {
                 exit(0);
                 break;
             default:
-                cout << "\n\n\n\n\n\n\n\n\n\n\n\t\t\t\tWRONG OPTION!";
+                cout << "\n\n\t\t\t\tWRONG OPTION!";
         }
     }
 }
@@ -644,7 +644,7 @@ search_student() function to check their record, or statistics() to look at the 
 [[noreturn]] void StudentScreen() {
     while (true) {
         int n;
-        cout << "\n\n\n\n\n\n\n";
+        cout << "\n\n";
         cout << "\t\t\t\t ------------" << "\n";
         cout << "\t\t\t\t     MENU" << "\n";
         cout << "\t\t\t\t ------------" << "\n";
